@@ -6,7 +6,7 @@
       v-on:input="filtro = $event.target.value"/>
     
     <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto of fotos" v-bind:key="foto.id">
+      <li class="lista-fotos-item" v-for="foto of fotosComFiltro" v-bind:key="foto.id">
         <meu-painel :titulo="foto.titulo">
           <img class="responsive-image" :src="foto.url" :alt = "foto.titulo" />
         </meu-painel>
@@ -29,6 +29,22 @@ export default {
       titulo: 'VUEjsPIC',
       fotos:[],
       filtro: ''
+    }
+  },
+
+  computed: {
+    fotosComFiltro(){
+      let fotosReturn = [];
+      
+      if(this.filtro){
+        let exp = new RegExp(this.filtro.trim(), 'i');
+        
+        fotosReturn = this.fotos.filter(foto => exp.test(foto.titulo));
+      } else {
+        fotosReturn = this.fotos;
+      }
+
+      return fotosReturn;
     }
   },
 
