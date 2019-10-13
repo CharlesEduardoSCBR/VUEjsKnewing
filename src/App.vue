@@ -2,6 +2,9 @@
   <div class="corpo">
     <h1 class="centralizado">{{ titulo }}</h1>
     
+    <input type="search" class="filtro" placeholder="filtre por parte do título" 
+      v-on:input="filtro = $event.target.value"/>
+    
     <ul class="lista-fotos">
       <li class="lista-fotos-item" v-for="foto of fotos" v-bind:key="foto.id">
         <meu-painel :titulo="foto.titulo">
@@ -24,7 +27,8 @@ export default {
   data(){
     return {
       titulo: 'VUEjsPIC',
-      fotos:[]
+      fotos:[],
+      filtro: ''
     }
   },
 
@@ -58,5 +62,10 @@ export default {
 
   .responsive-image {
     width: 100%;
+  }
+
+  .filtro {
+    width: 100%;
+    display: block
   }
 </style>
