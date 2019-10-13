@@ -2,11 +2,10 @@
   <div class="corpo">
     <nav>
       <ul>
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/cadastro">Cadastro</router-link>
+        <li v-for="route in routes" v-bind:key="route.id">
+          <router-link :to="route.path ? route.path : '/'">
+            {{ route.titulo }}
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -15,8 +14,14 @@
 </template>
 
 <script>
-export default {
+import { routes } from './router';
 
+export default {
+  data(){
+    return {
+      routes
+    }
+  }
 }
 </script>
 
