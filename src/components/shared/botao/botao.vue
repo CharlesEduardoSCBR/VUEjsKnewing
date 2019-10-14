@@ -1,9 +1,22 @@
 <template>
-  <button class="botao botao-perigo" type="tipo" @click="disparaAcao()">{{ rotulo }}</button>
+  <button 
+    class="botao"
+    :class="estiloDoBotao" type="tipo" @click="disparaAcao()">{{ rotulo }}</button>
 </template>
 
 <script>
 export default {
+
+    computed: {
+
+        estiloDoBotao(){
+            let estiloBotao = '';
+            if(this.estilo == 'padrao' || this.estilo == '' || typeof this.estilo === 'undefined') estiloBotao = 'botao-padrao'
+            if(this.estilo == 'perigo') estiloBotao = 'botao-perigo'
+
+            return estiloBotao
+        }
+    },
 
     methods: {
 
@@ -19,7 +32,7 @@ export default {
         }
     },
 
-    props: ['tipo', 'rotulo', 'confirmacao']
+    props: ['estilo', 'tipo', 'rotulo', 'confirmacao']
 }
 </script>
 
