@@ -8,13 +8,18 @@ export default {
     methods: {
 
         disparaAcao(){
-            if(confirm('Confirmar operação?')){
-                this.$emit('botaoAtivado', 'Dado...');
+            if(this.confirmacao){
+                if(confirm('Confirmar operação?')){
+                    this.$emit('botaoAtivado');
+                }
+                return;
             }
+            
+            this.$emit('botaoAtivado');
         }
     },
 
-    props: ['tipo', 'rotulo']
+    props: ['tipo', 'rotulo', 'confirmacao']
 }
 </script>
 
