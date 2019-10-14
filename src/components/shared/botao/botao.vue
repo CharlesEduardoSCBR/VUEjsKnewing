@@ -1,9 +1,18 @@
 <template>
-  <button class="botao botao-perigo" type="tipo">{{ rotulo }}</button>
+  <button class="botao botao-perigo" type="tipo" @click="disparaAcao()">{{ rotulo }}</button>
 </template>
 
 <script>
 export default {
+
+    methods: {
+
+        disparaAcao(){
+            if(confirm('Confirmar operação?')){
+                this.$emit('botaoAtivado', 'Dado...');
+            }
+        }
+    },
 
     props: ['tipo', 'rotulo']
 }
