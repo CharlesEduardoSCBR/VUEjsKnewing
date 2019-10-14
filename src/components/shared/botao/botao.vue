@@ -32,7 +32,22 @@ export default {
         }
     },
 
-    props: ['estilo', 'tipo', 'rotulo', 'confirmacao']
+    props: {
+
+        confirmacao : Boolean,
+        
+        estilo : String,
+
+        tipo : {
+            required: true,
+            type: String
+        },
+
+        rotulo : {
+            required: true,
+            type: String         
+        }
+    }
 }
 </script>
 
