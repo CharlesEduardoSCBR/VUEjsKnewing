@@ -7,16 +7,14 @@
       <div class="controle">
         <label for="titulo">TÍTULO</label>
         <input id="titulo" autocomplete="off"
-          @input="foto.titulo = $event.target.value"
-          :value="foto.titulo"
+          v-model="foto.titulo"
         >
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
         <input id="url" autocomplete="off"
-          @input="foto.url = $event.target.value"
-          :value="foto.url"
+          v-model="foto.url"
         >
         <imagem-responsiva/>
       </div>
@@ -24,8 +22,7 @@
       <div class="controle">
         <label for="descricao">DESCRIÇÃO</label>
         <textarea id="descricao" autocomplete="off"
-          @input="foto.descricao = $event.target.value"
-          :value="foto.descricao"
+          v-model="foto.descricao"
         ></textarea>
       </div>
 
