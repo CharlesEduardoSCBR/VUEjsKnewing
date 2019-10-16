@@ -7,16 +7,20 @@
       <div class="controle">
         <label for="titulo">TÍTULO</label>
         <input id="titulo" autocomplete="off"
-          v-model="foto.titulo"
+          v-model.lazy="foto.titulo"
         >
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
         <input id="url" autocomplete="off"
-          v-model="foto.url"
+          v-model.lazy="foto.url"
         >
-        <imagem-responsiva/>
+        <imagem-responsiva
+          :url="foto.url"
+          :titulo="foto.titulo"
+          v-show="foto.url"
+        />
       </div>
 
       <div class="controle">
