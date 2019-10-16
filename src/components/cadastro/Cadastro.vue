@@ -40,8 +40,10 @@
 </template>
 
 <script>
-import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue'
+import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
 import Botao from '../shared/botao/botao.vue';
+
+import Foto from '../../domain/foto/Foto';
 
 export default {
 
@@ -53,23 +55,14 @@ export default {
   data() {
 
     return {
-      foto: {
-        titulo: '',
-        url: '',
-        descricao: ''
-      }
+      foto: new Foto()
     }
   },
 
   methods: {
     
-    grava(){
-      
-      this.foto = {
-        titulo: '',
-        url: '',
-        descricao: ''
-      }
+    grava(){ 
+      this.foto = new Foto();
     }
   }
 }
