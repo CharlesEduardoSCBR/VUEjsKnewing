@@ -74,18 +74,22 @@ export default {
     
     this.$http.get('http://localhost:3000/v1/fotos')
       .then(res => res.json())
-      .then(fotos => this.fotos = fotos, err => console.log(err))
-      .then(() => this.mensagem = 'Foto removida com susseco', err => {
-          console.log(err),
-          this.mensagem = 'Não foi possivel remover a foto'
-      });
+      .then(fotos => this.fotos = fotos, err => console.log(err));
   },
 
   methods: {
     
     remove(foto) {
       this.$http
-        .delete(`localhost:3000/v1.fotos/${foto._id}`);
+        .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+        .then(()=> {
+          let indice = this.fotos.indexOf(foto);
+          this.fotos.splice(indice, 1);
+          this.mensagem = 'Foto removida com sucesso';
+        }, err => {
+          console.log(err);
+          this.mensagem = 'Não foi possivel remover a foto';
+        });
     }
   }
 }
