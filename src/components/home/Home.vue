@@ -1,6 +1,7 @@
 <template>
   <div class="">
     <h1 class="centralizado">{{ titulo }}</h1>
+    <p v-show="mensagem" class="centralizado">{{ mensagem }}</p>
     
     <input type="search" class="filtro" placeholder="filtre por parte do título" 
       @input="filtro = $event.target.value"/>
@@ -48,7 +49,8 @@ export default {
     return {
       titulo: 'VUEjsPIC',
       fotos:[],
-      filtro: ''
+      filtro: '',
+      mensagem: ''
     }
   },
 
@@ -72,13 +74,18 @@ export default {
     
     this.$http.get('http://localhost:3000/v1/fotos')
       .then(res => res.json())
-      .then(fotos => this.fotos = fotos, err => console.log(err));
+      .then(fotos => this.fotos = fotos, err => console.log(err))
+      .then(() => this.mensagem = 'Foto removida com susseco', err => {
+          console.log(err),
+          this.mensagem = 'Não foi possivel remover a foto'
+      });
   },
 
   methods: {
     
     remove(foto) {
-      alert(`Remover a foto! ${ foto.titulo }`);
+      this.$http
+        .delete(`localhost:3000/v1.fotos/${foto._id}`);
     }
   }
 }
