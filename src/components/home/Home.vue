@@ -13,6 +13,13 @@
             v-meu-transform.rotate="1.5"
           />
 
+          <router-link :to="{ name : 'alterar', params: { id: foto._id } }">
+            <meu-botao 
+              tipo="button"
+              rotulo="Alterar"
+            />
+          </router-link>
+
           <meu-botao 
             tipo="button" 
             rotulo="Remover" 

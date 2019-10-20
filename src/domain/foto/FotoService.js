@@ -4,6 +4,12 @@ export default class FotoService {
         this._resource = resource('v1/fotos{/id}');
     }
 
+    buscarPor(id){
+        return this
+            ._resource.get({ id })
+            .then(res => res.json());
+    }
+
     cadastra(foto){
         return this._resource
             .save(foto);
