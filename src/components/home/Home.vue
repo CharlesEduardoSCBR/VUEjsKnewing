@@ -72,7 +72,10 @@ export default {
 
   created(){
     
-    this.$http.get('v1/fotos')
+    this.resource = this.$resource('v1/fotos/{/id}');
+
+    this.resource
+      .query()
       .then(res => res.json())
       .then(fotos => this.fotos = fotos, err => console.log(err));
   },
@@ -80,8 +83,9 @@ export default {
   methods: {
     
     remove(foto) {
-      this.$http
-        .delete(`v1/fotos/${foto._id}`)
+      
+      this.resource
+        .delete({ id: foto._id})
         .then(()=> {
           let indice = this.fotos.indexOf(foto);
           this.fotos.splice(indice, 1);
