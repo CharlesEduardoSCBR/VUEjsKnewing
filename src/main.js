@@ -1,4 +1,4 @@
-import VeeValidate from 'vee-validate';
+import { ValidationProvider, extend } from 'vee-validate';
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
@@ -15,7 +15,12 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({ routes, mode: "history" });
 
-Vue.use(VeeValidate);
+extend('secret', {
+  validate: value => value === 'example',
+  message: 'This is not the magic word'
+});
+
+Vue.component('ValidationProvider', ValidationProvider);
 
 new Vue({
   render: h => h(App),

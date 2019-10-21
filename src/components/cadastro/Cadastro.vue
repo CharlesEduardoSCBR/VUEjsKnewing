@@ -9,9 +9,14 @@
     <form @submit.prevent="grava()">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
-        <input id="titulo" autocomplete="off"
-          v-model.lazy="foto.titulo"
-        >
+        <ValidationProvider rules="secret" v-slot="{ errors }">
+          <input id="titulo" autocomplete="off"
+            v-model.lazy="foto.titulo"
+            class="controle textarea"
+          >
+          </br>
+          <span>{{ errors[0] }}</span>
+        </ValidationProvider>
       </div>
 
       <div class="controle">
